@@ -1,0 +1,5 @@
+@EndUserText.label: 'Flight RAP application'
+define service ZFLIGHT_RAP {
+  expose ZI_CONNECTION_TRAVEL;
+  expose ZI_FLIGHT_INFO;
+}

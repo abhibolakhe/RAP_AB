@@ -1,0 +1,27 @@
+@Metadata.layer: #CORE
+annotate view ZC_TRAVEL_MAN with
+{
+  @UI.lineItem: [{ position: 10 }]
+  TravelId;
+  @UI.lineItem: [{ position: 20 }]
+  AgencyId;
+  //    agencName;
+  @UI.lineItem: [{ position: 30 }]
+  CustomerId;
+  //    customerName;
+  @UI.lineItem: [{ position: 40 }]
+  BeginDate;
+  @UI.lineItem: [{ position: 50 }]
+  EndDate;
+  //    BookingFee;
+  @UI.lineItem: [{ position: 60 }]
+  TotalPrice;
+  //    CurrencyCode;
+  //    Description;
+  @UI.lineItem: [{ position: 70 }]
+  OverallStatus;
+  //    Text;
+  //    LastChangedAt;
+
+
+}
