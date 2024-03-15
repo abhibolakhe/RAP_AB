@@ -7,8 +7,10 @@ define root view entity ZC_TRAVEL_MAN
   as projection on ZI_TRAVEL_MAN
 {
   key TravelId,
+  @ObjectModel.text.element: [ 'agencName' ]
       AgencyId,
       _agency.Name       as agencName,
+      @ObjectModel.text.element: [ 'customerName' ]
       CustomerId,
       _customer.LastName as customerName,
       BeginDate,
@@ -17,8 +19,9 @@ define root view entity ZC_TRAVEL_MAN
       TotalPrice,
       CurrencyCode,
       Description,
+      @ObjectModel.text.element: [ 'overallstatustext' ]
       OverallStatus,
-      _status._Text.Text : localized,
+      _status._Text.Text as overallstatustext : localized,
       //      CreatedBy,
       //      CreatedAt,
       //      LastChangedBy,

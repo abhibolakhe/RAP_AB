@@ -1,27 +1,70 @@
 @Metadata.layer: #CORE
+@Search.searchable: true
+@UI.headerInfo: { typeName: 'Travel' , typeNamePlural: 'Travels',
+title: { type: #STANDARD, label: 'Travel', value: 'TravelId'}
+}
 annotate view ZC_TRAVEL_MAN with
 {
+  @UI.facet: [{
+     id : 'Travel',
+     purpose: #STANDARD,
+     position: 10,
+     label: 'TRAVEL',
+     type: #IDENTIFICATION_REFERENCE
+   },
+   {
+     id : 'Booking',
+     purpose: #STANDARD,
+     position: 20,
+     label: 'BOOKING',
+     type: #LINEITEM_REFERENCE,
+     targetElement: '_booking'
+   }
+   ]
+
   @UI.lineItem: [{ position: 10 }]
+  @Search.defaultSearchElement: true
+  @UI.identification: [{ position: 10 }]
   TravelId;
-  @UI.lineItem: [{ position: 20 }]
+  @UI : { lineItem: [{ position: 20 }] ,
+  selectionField: [{ position: 10 }] }
+  @Search.defaultSearchElement: true
+  @Consumption.valueHelpDefinition: [{  entity: {
+  name: '/DMO/I_Agency',
+  element: 'AgencyID' } }]
+  @UI.identification: [{ position: 20 }]
   AgencyId;
   //    agencName;
-  @UI.lineItem: [{ position: 30 }]
+  @UI : { lineItem: [{ position: 30 }] ,
+  selectionField: [{ position: 20 }], identification: [{ position: 30  }]}
+  @Search.defaultSearchElement: true
+  @Consumption.valueHelpDefinition: [{ entity.name: '/DMO/I_Customer' , entity.element: 'CustomerID' }]
   CustomerId;
   //    customerName;
   @UI.lineItem: [{ position: 40 }]
+  @UI.identification: [{ position: 40 }]
   BeginDate;
   @UI.lineItem: [{ position: 50 }]
+  @UI.identification: [{ position: 50 }]
   EndDate;
   //    BookingFee;
   @UI.lineItem: [{ position: 60 }]
+  @UI.identification: [{ position: 60 }]
   TotalPrice;
-  //    CurrencyCode;
-  //    Description;
-  @UI.lineItem: [{ position: 70 }]
+  @Consumption.valueHelpDefinition: [{ entity.name: 'I_Currency' , entity.element: 'Currency' }]
+  CurrencyCode;
+  @UI.identification: [{ position: 70 }]
+  Description;
+  @UI : { lineItem: [{ position: 70 } ] ,
+  selectionField: [{ position: 30 }], textArrangement: #TEXT_ONLY  }
+  @Search.defaultSearchElement: true
+  @Search.fuzzinessThreshold: 0.8
+  @Consumption.valueHelpDefinition: [{ entity.name: '/DMO/I_Overall_Status_VH' , entity.element: 'OverallStatus' }]
+  @UI.identification: [{ position: 80 }]
   OverallStatus;
-  //    Text;
-  //    LastChangedAt;
+  //  overallstatustext;
+  @UI.hidden: true
+  LastChangedAt;
 
 
 }
