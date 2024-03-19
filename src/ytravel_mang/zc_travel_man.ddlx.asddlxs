@@ -24,6 +24,7 @@ annotate view ZC_TRAVEL_MAN with
 
   @UI.lineItem: [{ position: 10 }]
   @Search.defaultSearchElement: true
+  @Search.fuzzinessThreshold: 0.8
   @UI.identification: [{ position: 10 }]
   TravelId;
   @UI : { lineItem: [{ position: 20 }] ,
@@ -56,7 +57,6 @@ annotate view ZC_TRAVEL_MAN with
   @UI : { lineItem: [{ position: 70 } ] ,
   selectionField: [{ position: 30 }], textArrangement: #TEXT_ONLY  }
   @Search.defaultSearchElement: true
-  @Search.fuzzinessThreshold: 0.8
   @Consumption.valueHelpDefinition: [{ entity.name: '/DMO/I_Overall_Status_VH' , entity.element: 'OverallStatus' }]
   @UI.identification: [{ position: 80 }]
   OverallStatus;

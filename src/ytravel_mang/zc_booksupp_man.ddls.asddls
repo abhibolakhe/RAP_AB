@@ -17,5 +17,5 @@ define view entity ZC_BOOKSUPP_MAN
       _booking : redirected to parent ZC_BOOKING_MAN,
       _supply,
       _supplytext,
-      _travel
+      _travel : redirected to ZC_TRAVEL_MAN
 }

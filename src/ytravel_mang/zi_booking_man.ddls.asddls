@@ -9,8 +9,8 @@
 }
 define view entity ZI_BOOKING_MAN
   as select from zbooking_man
-  association        to parent ZI_TRAVEL_MAN       as _travel       on  $projection.TravelId = _travel.TravelId
-  composition [0..*] of ZI_BOOKSUPP_MAN as _bookingsupply
+  association        to parent ZI_TRAVEL_MAN     as _travel         on  $projection.TravelId = _travel.TravelId
+  composition [0..*] of ZI_BOOKSUPP_MAN          as _bookingsupply
   association [1..1] to /DMO/I_Carrier           as _carrier        on  $projection.CarrierId = _carrier.AirlineID
   association [1..1] to /DMO/I_Customer          as _customer       on  $projection.CustomerId = _customer.CustomerID
   association [1..1] to /DMO/I_Connection        as _connection     on  $projection.CarrierId    = _connection.AirlineID
@@ -28,6 +28,8 @@ define view entity ZI_BOOKING_MAN
       flight_price    as FlightPrice,
       currency_code   as CurrencyCode,
       booking_status  as BookingStatus,
+      // use this field as ETag
+      @Semantics.systemDateTime.localInstanceLastChangedAt: true
       last_changed_at as LastChangedAt,
       _bookingsupply,
       _travel,

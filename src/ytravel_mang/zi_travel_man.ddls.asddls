@@ -9,7 +9,7 @@
 }
 define root view entity ZI_TRAVEL_MAN
   as select from ztravel_man
-  composition [0..*] of ZI_BOOKING_MAN as _booking
+  composition [0..*] of ZI_BOOKING_MAN           as _booking
   association [0..1] to /DMO/I_Agency            as _agency   on $projection.AgencyId = _agency.AgencyID
   association [0..1] to /DMO/I_Customer          as _customer on $projection.CustomerId = _customer.CustomerID
   association [0..1] to I_Currency               as _currency on $projection.CurrencyCode = _currency.Currency
@@ -30,6 +30,8 @@ define root view entity ZI_TRAVEL_MAN
       created_by      as CreatedBy,
       created_at      as CreatedAt,
       last_changed_by as LastChangedBy,
+      // this field play the role of ETag field
+      @Semantics.systemDateTime.localInstanceLastChangedAt: true
       last_changed_at as LastChangedAt,
       _booking,
       _agency,

@@ -6,7 +6,7 @@
     <METADATA>
      <NAME>ZUI_TRAVEL_MANAG</NAME>
      <TYPE>SRVB/SVB</TYPE>
-     <DESCRIPTION>Travel managed app</DESCRIPTION>
+     <DESCRIPTION>Service binding for travel</DESCRIPTION>
      <LANGUAGE>EN</LANGUAGE>
      <LINKS>
       <item>
@@ -15,10 +15,10 @@
        <TITLE>Historic versions</TITLE>
       </item>
       <item>
-       <HREF>/sap/bc/adt/businessservices/odatav4/ZUI_TRAVEL_MANAG</HREF>
-       <REL>http://www.sap.com/categories/odatav4</REL>
-       <TYPE>application/vnd.sap.adt.businessservices.odatav4.v1+xml</TYPE>
-       <TITLE>ODATAV4</TITLE>
+       <HREF>/sap/bc/adt/businessservices/odatav2/ZUI_TRAVEL_MANAG</HREF>
+       <REL>http://www.sap.com/categories/odatav2</REL>
+       <TYPE>application/vnd.sap.adt.businessservices.odatav2.v2+xml</TYPE>
+       <TITLE>ODATAV2</TITLE>
       </item>
       <item>
        <HREF>/sap/bc/adt/businessservices/testclass</HREF>
@@ -53,10 +53,10 @@
       <NAME>ZUI_TRAVEL_MANAG</NAME>
      </BIND_TYPE_IMPL>
      <BIND_TYPE>ODATA</BIND_TYPE>
-     <BIND_TYPE_VERSION>V4</BIND_TYPE_VERSION>
+     <BIND_TYPE_VERSION>V2</BIND_TYPE_VERSION>
      <SERVICES>
       <item>
-       <SERVICE_NAME>ZSR_TRAVEL_MAN</SERVICE_NAME>
+       <SERVICE_NAME>ZUI_TRAVEL_MANAG</SERVICE_NAME>
        <SERVICE_CONTENT>
         <item>
          <SERVICE_VERSION>0001</SERVICE_VERSION>

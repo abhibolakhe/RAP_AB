@@ -1,0 +1,90 @@
+managed; // implementation in class zbp_i_travel_man unique;
+strict ( 2 );
+
+define behavior for ZI_TRAVEL_MAN //alias <alias_name>
+implementation in class zcl_bp_travel_man unique
+persistent table ztravel_man
+lock master
+authorization master ( instance )
+etag master LastChangedAt
+early numbering
+{
+  field ( readonly ) TravelId;
+  create;
+  update;
+  delete;
+  association _booking { create; }
+  mapping for ztravel_man
+    {
+      TravelId      = travel_id;
+      AgencyId      = agency_id;
+      CustomerId    = customer_id;
+      BeginDate     = begin_date;
+      EndDate       = end_date;
+      BookingFee    = booking_fee;
+      TotalPrice    = total_price;
+      CurrencyCode  = currency_code;
+      Description   = description;
+      OverallStatus = overall_status;
+      CreatedBy     = created_by;
+      CreatedAt     = created_at;
+      LastChangedBy = last_changed_by;
+      LastChangedAt = last_changed_at;
+    }
+
+}
+
+define behavior for ZI_BOOKING_MAN //alias <alias_name>
+implementation in class zcl_bp_booking_man unique
+persistent table zbooking_man
+lock dependent by _travel
+authorization dependent by _travel
+etag master LastChangedAt
+{
+  update;
+  delete;
+  field ( readonly ) TravelId;
+  association _travel;
+  association _bookingsupply { create; }
+  mapping for zbooking_man
+    {
+      TravelId      = travel_id;
+      BookingId     = booking_id;
+      BookingDate   = booking_date;
+      CustomerId    = customer_id;
+      CarrierId     = carrier_id;
+      ConnectionId  = connection_id;
+      FlightDate    = flight_date;
+      FlightPrice   = flight_price;
+      CurrencyCode  = currency_code;
+      BookingStatus = booking_status;
+      LastChangedAt = last_changed_at;
+    }
+
+
+}
+
+define behavior for ZI_BOOKSUPP_MAN //alias <alias_name>
+implementation in class zcl_bp_booksuppl_man unique
+persistent table zbooksupp_man
+lock dependent by _travel
+authorization dependent by _travel
+etag master LastChangedAt
+{
+  update;
+  delete;
+  field ( readonly ) TravelId, BookingId;
+  association _travel;
+  association _booking;
+  mapping for zbooksupp_man
+    {
+      TravelId            = travel_id;
+      BookingId           = booking_id;
+      BookingSupplementId = booking_supplement_id;
+      SupplementId        = supplement_id;
+      Price               = price;
+      CurrencyCode        = currency_code;
+      LastChangedAt       = last_changed_at;
+    }
+
+}

@@ -1,0 +1,5 @@
+CLASS zcl_bp_booksuppl_man DEFINITION PUBLIC ABSTRACT FINAL FOR BEHAVIOR OF zi_travel_man.
+ENDCLASS.
+
+CLASS zcl_bp_booksuppl_man IMPLEMENTATION.
+ENDCLASS.
