@@ -16,14 +16,13 @@ CLASS lhc_ZI_TRAVEL_MAN IMPLEMENTATION.
 
   METHOD earlynumbering_create.
 
-    DATA lt_entities TYPE TABLE FOR CREATE zi_travel_man.
-
+    DATA(lt_entities) = entities.
     DELETE lt_entities WHERE travelid IS NOT INITIAL.
 
     TRY.
         cl_numberrange_runtime=>number_get(
              EXPORTING
-                 nr_range_nr = '10'
+                 nr_range_nr = '01'
                  object = '/DMO/TRV_M'
                  quantity = CONV #( lines( lt_entities ) )
              IMPORTING
@@ -32,20 +31,20 @@ CLASS lhc_ZI_TRAVEL_MAN IMPLEMENTATION.
                  returned_quantity = DATA(lv_qty) ).
 
       CATCH cx_nr_object_not_found.
-      CATCH cx_number_ranges INTO DATA(lv_error).
+      CATCH cx_number_ranges INTO DATA(lo_error).
 
-        LOOP AT lt_entities INTO DATA(ls_entities_e).
+        LOOP AT lt_entities INTO DATA(ls_entities).
 
-          APPEND VALUE #( %cid = ls_entities_e-%cid
-                          %key = ls_entities_e-%key )
+          APPEND VALUE #( %cid = ls_entities-%cid
+                          %key = ls_entities-%key )
                TO failed-zi_travel_man.
 
-          APPEND VALUE #( %cid = ls_entities_e-%cid
-                          %key = ls_entities_e-%key
-                          %msg = lv_error )
+          APPEND VALUE #( %cid = ls_entities-%cid
+                          %key = ls_entities-%key
+                          %msg = lo_error )
              TO reported-zi_travel_man.
         ENDLOOP.
-        exit.
+        EXIT.
 
     ENDTRY.
 
@@ -53,7 +52,7 @@ CLASS lhc_ZI_TRAVEL_MAN IMPLEMENTATION.
     DATA(lv_curr_num) = lv_latest_num - lv_qty.
 
 
-    LOOP AT lt_entities INTO DATA(ls_entities).
+    LOOP AT lt_entities INTO ls_entities.
       lv_curr_num += lv_curr_num.
 
       APPEND VALUE #( %cid = ls_entities-%cid
