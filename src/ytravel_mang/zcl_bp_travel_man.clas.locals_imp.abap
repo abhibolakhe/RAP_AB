@@ -168,7 +168,7 @@ CLASS lhc_ZI_TRAVEL_MAN IMPLEMENTATION.
 
       <ls_travel_cr>-BeginDate = cl_abap_context_info=>get_system_date(  ).
       <ls_travel_cr>-EndDate   = cl_abap_context_info=>get_system_date(  ) + 30.
-      <ls_travel_cr>-OverallStatus = '0'.
+      <ls_travel_cr>-OverallStatus = 'O'.
 
 
       APPEND VALUE #( %cid_ref = <ls_travel_cr>-%cid )
