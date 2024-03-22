@@ -48,10 +48,11 @@ CLASS lhc_zi_booking_man IMPLEMENTATION.
 * assign new bookingsupply_ID
         LOOP AT <ls_entities>-%target ASSIGNING FIELD-SYMBOL(<ls_booking_suppid>).
 
+          APPEND CORRESPONDING #( <ls_booking_suppid> ) TO mapped-zi_booksupp_man
+                                              ASSIGNING FIELD-SYMBOL(<ls_new_map_booksupp>).
+
           IF <ls_booking_suppid>-BookingSupplementId IS INITIAL.
             lv_max_booking_suppid += 1.
-            APPEND CORRESPONDING #( <ls_booking_suppid> ) TO mapped-zi_booksupp_man
-                                     ASSIGNING FIELD-SYMBOL(<ls_new_map_booksupp>).
             <ls_new_map_booksupp>-BookingSupplementId = lv_max_booking_suppid.
           ENDIF.
 

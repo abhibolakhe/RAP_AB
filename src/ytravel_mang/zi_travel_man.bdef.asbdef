@@ -10,6 +10,12 @@ etag master LastChangedAt
 early numbering
 {
   field ( readonly ) TravelId;
+
+  action acceptTravel result [1] $self;
+  action rejectTravel result [1] $self;
+  factory action copyTravel [1];
+  internal action calTotPrice;
+
   create;
   update;
   delete;
@@ -42,9 +48,10 @@ authorization dependent by _travel
 etag master LastChangedAt
 early numbering
 {
+
   update;
   delete;
-  field ( readonly ) TravelId, BookingId ;
+  field ( readonly ) TravelId, BookingId;
   association _travel;
   association _bookingsupply { create; }
   mapping for zbooking_man
