@@ -1,6 +1,6 @@
 @Metadata.layer: #CORE
 @Search.searchable: true
-@UI.headerInfo: { typeName: 'Booking Supplement' , typeNamePlural: 'Booking Supplements',
+@UI.headerInfo: { typeName: 'Booking' , typeNamePlural: 'Booking',
 title: { type: #STANDARD, label: 'Booking Supplement', value: 'BookingId'} }
 annotate view ZC_BOOKING_MAN with
 {

@@ -128,6 +128,21 @@ CLASS lhc_ZI_TRAVEL_MAN IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD acceptTravel.
+
+  MODIFY ENTITIES OF zi_travel_man IN LOCAL MODE
+  ENTITY zi_travel_man
+  update FIELDS ( OverallStatus )
+  with VALUE #( for ls_key in keys ( travelid = ls_key-travelid
+                                     OverallStatus = 'A'  ) ).
+
+  READ ENTITIES OF zi_travel_man IN LOCAL MODE
+  ENTITY zi_travel_man
+  ALL FIELDS WITH CORRESPONDING #( KEYS )
+  RESULT DATA(lt_result).
+
+  result = VALUE #( for ls_result in lt_result ( travelid  = ls_result-travelid
+                                              %param  = ls_result ) ).
+
   ENDMETHOD.
 
   METHOD calTotPrice.
@@ -223,6 +238,21 @@ CLASS lhc_ZI_TRAVEL_MAN IMPLEMENTATION.
   ENDMETHOD.
 
   METHOD rejectTravel.
+
+    MODIFY ENTITIES OF zi_travel_man IN LOCAL MODE
+  ENTITY zi_travel_man
+  update FIELDS ( OverallStatus )
+  with VALUE #( for ls_key in keys ( travelid = ls_key-travelid
+                                     OverallStatus = 'X'  ) ).
+
+  READ ENTITIES OF zi_travel_man IN LOCAL MODE
+  ENTITY zi_travel_man
+  ALL FIELDS WITH CORRESPONDING #( KEYS )
+  RESULT DATA(lt_result).
+
+  result = VALUE #( for ls_result in lt_result ( travelid  = ls_result-travelid
+                                              %param  = ls_result ) ).
+
   ENDMETHOD.
 
 ENDCLASS.
